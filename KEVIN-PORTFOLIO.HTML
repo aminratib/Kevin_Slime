@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="shortcut icon" href="FAVICON.png" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin Slime - Portfolio</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+           font-family: "Poppins", sans-serif;
+           font-weight: 300;
+           font-style: normal;            background: linear-gradient(135deg, #eaf1fa 0%, #4580ff 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23f0f0f0"/><circle cx="50" cy="35" r="15" fill="%23333"/><ellipse cx="50" cy="75" rx="20" ry="15" fill="%23333"/></svg>') center/cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info h1 {
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .contact-icons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .contact-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .contact-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: #667eea;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .contact-icon:hover .tooltip {
+            opacity: 1;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            color: white;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .competency-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .competency-item:hover {
+            background: #f8f9ff;
+            padding-left: 10px;
+        }
+
+        .competency-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            background: #1f7be4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .language-item:last-child {
+            border-bottom: none;
+        }
+
+        .flag {
+            width: 30px;
+            height: 20px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .experience-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea, #fefdff);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .experience-company {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .experience-period {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .experience-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .experience-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+         .education-item:hover {
+  transform: translateX(10px) scale(1.01);
+  transition: 1s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+        .education-item {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 10px solid #667eea;
+        }
+
+       
+
+        .degree {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .institution {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .year {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            font-style: normal;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab-button.active,
+        .tab-button:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .summary-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-icons {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .sidebar.active {
+                display: flex;
+                animation: fadeIn 0.5s ease;
+            }
+
+            .mobile-only {
+                display: inline-block;
+            }
+        }
+
+        .flag{
+            border-radius: 20px;
+            height: 30px;
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr 1.5fr;
+            }
+
+            .profile-info h1 {
+                font-size: 2.5rem;
+            }
+
+            .experience-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+
+
+        .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      /* display: flex; */
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .overlay img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      animation: zoom 0.3s ease;
+    }
+
+    @keyframes zoom {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    </style>
+</head>
+<body>
+     <div class="overlay" id="imageOverlay">
+                    <img src="" alt="Image">
+                    </div>
+                    
+    <div class="floating-elements"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="profile-section">
+                <img src="profil.jpg" class="profile-image" alt="Profile Image">
+                <div class="profile-info">
+                    <h1>Kevin Slime</h1>
+                </div>
+            </div>
+            <div class="contact-icons">
+                <div class="contact-icon" onclick="showContact('email')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <div class="tooltip">kevin.slime@example.com</div>
+                </div>
+                <div class="contact-icon" onclick="showContact('phone')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 0 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    <div class="tooltip">+1 555 123 4567</div>
+                </div>
+                <div class="contact-icon" onclick="showContact('location')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <div class="tooltip">New York, USA</div>
+                </div>
+                <div class="contact-icon" onclick="showContact('linkedin')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+                    </svg>
+                    <div class="tooltip">linkedin.com/in/kevinslime</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-button active" onclick="showTab('summary')">Professional Summary</button>
+            <button class="tab-button" onclick="showTab('experience')">Experience</button>
+            <button class="tab-button" onclick="showTab('education')">Education</button>
+            <button class="tab-button mobile-only" onclick="showTab('competencies')">Competencies</button>
+            <button class="tab-button mobile-only" onclick="showTab('languages')">Languages</button>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div id="competencies" class="section tab-content">
+                    <div class="section-title">Competencies</div>
+                    <div class="competency-item">
+                        <div ><span><img src="CHECK.png" style="height: 30px;" alt=""></span></div>
+                        <span>Project & Program Management (PMP Certified)</span>
+                    </div>
+                    <div class="competency-item">
+                        <div ><span><img src="CHECK.png" style="height: 30px;" alt=""></span></div>
+                        <span>Strategic Leadership and Vision Planning</span>
+                    </div>
+                    <div class="competency-item">
+                        <div ><span><img src="CHECK.png" style="height: 30px;" alt=""></span></div>
+                        <span>Business Process Optimization</span>
+                    </div>
+                    <div class="competency-item">
+                        <div ><span><img src="CHECK.png" style="height: 30px;" alt=""></span></div>
+                        <span>Digital Transformation & Innovation</span>
+                    </div>
+                    <div class="competency-item">
+                        <div ><span><img src="CHECK.png" style="height: 30px;" alt=""></span></div>
+                        <span>Budgeting and Financial Forecasting</span>
+                    </div>
+                    <div class="competency-item">
+                        <div ><span><img src="CHECK.png" style="height: 30px;" alt=""></span></div>
+                        <span>Organizational Change Management</span>
+                    </div>
+                    <div class="competency-item">
+                        <div ><span><img src="CHECK.png" style="height: 30px;" alt=""></span></div>
+                        <span>Cross-Cultural Team Leadership</span>
+                    </div>
+                    <div class="competency-item">
+                        <div ><span><img src="CHECK.png" style="height: 30px;" alt=""></span></div>
+                        <span>Learning Management Systems (LMS)</span>
+                    </div>
+                </div>
+
+                <div id="languages" class="section tab-content">
+                    <div class="section-title">Languages</div>
+                    <div data-img="eng.png" style="cursor: pointer;" class="language-item">
+                        <div class="flag"><img src="us.jpg" class="flag" alt=""></div>
+                        <div>
+                            <div style="font-weight: 600;">English</div>
+                            <div style="color: #888; font-size: 0.9rem;">Native</div>
+                        </div>
+                    </div>
+                    <div data-img="french.png" style="cursor: pointer;" class="language-item">
+                        <div class="flag"><img src="fr.jpg" class="flag" alt=""></div>
+                        <div>
+                            <div style="font-weight: 600;">French</div>
+                            <div style="color: #888; font-size: 0.9rem;">Fluent</div>
+                        </div>
+                    </div>
+                    <div data-img="spain.png" style="cursor: pointer;" class="language-item">
+                        <div class="flag"><img src="spain.webp" class="flag" alt=""></div>
+                        <div>
+                            <div style="font-weight: 600;">Spanish</div>
+                            <div style="color: #888; font-size: 0.9rem;">Intermediate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div id="summary" class="tab-content active">
+                    <div class="summary-card">
+                        <p>Results-driven and visionary Manager with over <strong>15 years</strong> of comprehensive experience leading strategic initiatives, overseeing complex projects, and driving organizational excellence in diverse industries including technology, education, and manufacturing.</p>
+                        <br>
+                        <p>Demonstrates a proven ability to lead cross-functional teams, implement digital transformation programs, and cultivate innovative, high-performance work environments. Recognized for strong problem-solving skills, global business acumen, and ability to manage change in dynamic settings.</p>
+                    </div>
+                </div>
+
+                <div id="experience" class="tab-content">
+                    <div class="experience-grid">
+                        <div onmouseover="agrandir(this)" onmouseout="retrecir(this)" class="experience-card">
+                            <div class="experience-title">Senior Project Manager – Digital Transformation</div>
+                            <div class="experience-company">GlobalTech Solutions, San Francisco, CA</div>
+                            <div class="experience-period">2018 – Present</div>
+                            <ul class="experience-list">
+                                <li>Led 25+ enterprise-wide digital transformation projects with budgets exceeding $10M</li>
+                                <li>Implemented AI-driven CRM and ERP systems, increasing operational efficiency by 40%</li>
+                                <li>Coordinated multinational teams across the US, Europe, and Asia with agile methodologies</li>
+                                <li>Developed risk mitigation strategies that reduced project delays by 30%</li>
+                            </ul>
+                        </div>
+
+                        <div onmouseover="agrandir(this)" onmouseout="retrecir(this)" class="experience-card">
+                            <div class="experience-title">Instructional Innovation Manager</div>
+                            <div class="experience-company">Edusmart International, Boston, MA</div>
+                            <div class="experience-period">2012 – 2018</div>
+                            <ul class="experience-list">
+                                <li>Designed and deployed cutting-edge online learning platforms using SCORM and Moodle</li>
+                                <li>Conducted faculty development workshops for over 120 educators on integrating digital tools</li>
+                                <li>Collaborated with international partners for research and joint curriculum development</li>
+                                <li>Managed a team of instructional designers and multimedia developers</li>
+                            </ul>
+                        </div>
+
+                        <div onmouseover="agrandir(this)" onmouseout="retrecir(this)" class="experience-card">
+                            <div class="experience-title">Operations Manager</div>
+                            <div class="experience-company">InnovaCorp Industries, Chicago, IL</div>
+                            <div class="experience-period">2008 – 2012</div>
+                            <ul class="experience-list">
+                                <li>Directed daily operations and supply chain management across multiple production lines</li>
+                                <li>Increased productivity by 20% through lean manufacturing principles</li>
+                                <li>Introduced performance dashboards to monitor KPIs and improve decision-making</li>
+                                <li>Negotiated vendor contracts leading to a 10% cost reduction in raw materials</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="education" class="tab-content">
+                    <div data-img="Kevin Slime.png" style="cursor: pointer;" class="education-item">
+                        <div class="degree"><span><img src="edu.png" style="height: 30px;" alt=""></span> MBA in Strategic Management</div>
+                        <div class="institution">Harvard Business School</div>
+                        <div class="year">2015</div>
+                    </div>
+
+
+                   
+
+
+                    <div  data-img="Kevin Slime (1).png" style="cursor: pointer;" class="education-item">
+                        <div class="degree"><span><img src="edu.png" style="height: 30px;" alt=""></span> M.Ed. in Educational Technology</div>
+                        <div class="institution">Stanford University</div>
+                        <div class="year">2011</div>
+                    </div>
+                    <div data-img="Kevin Slime (2).png" style="cursor: pointer;" class="education-item">
+                        <div class="degree"><span><img src="edu.png" style="height: 30px;" alt=""></span> B.Sc. in Industrial Engineering</div>
+                        <div class="institution">University of Michigan</div>
+                        <div class="year">2007</div>
+                    </div>
+                    <div data-img="Kevin Slime (3).png" style="cursor: pointer;" class="education-item">
+                        <div class="degree"><span><img src="diplome.png" style="height: 30px;" alt=""></span> Project Management Professional (PMP)</div>
+                        <div class="institution">PMI</div>
+                        <div class="year">2016</div>
+                    </div>
+                    <div data-img="Kevin Slime (4).png" style="cursor: pointer;" class="education-item">
+                        <div class="degree"><span><img src="diplome.png" style="height: 30px;" alt=""></span> Certificate in Transformational Leadership</div>
+                        <div class="institution">MIT</div>
+                        <div class="year">2020</div>
+                    </div>
+                    <div data-img="Kevin Slime (5).png" style="cursor: pointer;" class="education-item">
+                        <div class="degree"><span><img src="diplome.png" style="height: 30px;" alt=""></span> Advanced Certificate in Data-Driven Decision Making</div>
+                        <div class="institution">Wharton</div>
+                        <div class="year">2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            // Show selected tab content
+            const targetContent = document.getElementById(tabName);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+
+            // Handle sidebar visibility in mobile mode
+            const sidebar = document.querySelector('.sidebar');
+            if (window.innerWidth <= 768) {
+                if (tabName === 'competencies' || tabName === 'languages') {
+                    sidebar.classList.add('active');
+                    // Show only the selected sidebar section
+                    sidebar.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(tabName).classList.add('active');
+                } else {
+                    sidebar.classList.remove('active');
+                }
+            } else {
+                // In desktop mode, always show both sidebar sections
+                sidebar.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('active');
+                });
+            }
+
+            // Mark the clicked button as active
+            event.currentTarget.classList.add('active');
+        }
+
+        function showContact(type) {
+            const messages = {
+                email: 'Email: kevin.slime@example.com',
+                phone: 'Phone: +1 555 123 4567',
+                location: 'Location: New York, USA',
+                linkedin: 'LinkedIn: linkedin.com/in/kevinslime'
+                
+            };
+            if(type=='linkedin'){ window.location.href = "https://www.linkedin.com/in/kevin-slime-a61810318";}
+            alert(messages[type]);
+        }
+
+        function createFloatingElements() {
+            const container = document.querySelector('.floating-elements');
+            const colors = ['rgba(255,255,255,0.05)', 'rgba(102,126,234,0.1)', 'rgba(118,75,162,0.1)'];
+            for (let i = 0; i < 15; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'floating-circle';
+                circle.style.width = Math.random() * 100 + 20 + 'px';
+                circle.style.height = circle.style.width;
+                circle.style.left = Math.random() * 100 + '%';
+                circle.style.top = Math.random() * 100 + '%';
+                circle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                circle.style.animationDelay = Math.random() * 6 + 's';
+                circle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                container.appendChild(circle);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            createFloatingElements();
+            // Initialize sidebar visibility
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.sidebar .tab-content').forEach(content => {
+                    content.classList.add('active');
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.section, .experience-card, .education-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            document.querySelectorAll('.competency-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.05)';
+                    setTimeout(() => this.style.transform = 'scale(1)', 200);
+                });
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const activeButton = document.querySelector('.tab-button.active');
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('active');
+                sidebar.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('active');
+                });
+            } else if (activeButton) {
+                const activeTab = activeButton.getAttribute('onclick').match(/'([^']+)'/)[1];
+                if (['competencies', 'languages'].includes(activeTab)) {
+                    sidebar.classList.add('active');
+                    sidebar.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(activeTab).classList.add('active');
+                } else {
+                    sidebar.classList.remove('active');
+                }
+            }
+        });
+
+//   const overlay = document.getElementById('imageOverlay');
+//   const trigger = document.getElementById('showImage');
+
+//   trigger.addEventListener('click', () => {
+//     overlay.style.display = 'flex';
+//   });
+
+//   overlay.addEventListener('click', () => {
+//     overlay.style.display = 'none';
+//   });
+
+
+
+  const overlay = document.getElementById('imageOverlay');
+    const overlayImage = overlay.querySelector('img');
+
+    // Sélectionne tous les divs cliquables
+    const divs = document.querySelectorAll('.education-item, .language-item');
+
+    divs.forEach(div => {
+      div.addEventListener('click', () => {
+        const imgSrc = div.getAttribute('data-img');
+        overlayImage.src = imgSrc;
+        overlay.style.display = 'flex';
+        body.style.filter = 'blur(8px)';
+      });
+    });
+
+    overlay.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      overlayImage.src = ''; // Nettoyer l'image pour optimisation
+    });
+    </script>
+</body>
+</html>
