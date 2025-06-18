@@ -748,9 +748,11 @@
                 linkedin: 'LinkedIn: linkedin.com/in/kevinslime'
                 
             };
-            if(type=='linkedin'){ 
+            if(type==='linkedin'){ 
                     alert(messages[type]);
-                    window.location.href = "https://www.linkedin.com/in/kevin-slime-a61810318";}
+                    setTimeout(() => {
+        window.location.href = "https://www.linkedin.com/in/kevin-slime-a61810318";
+    }, 500);
             
         }
 
