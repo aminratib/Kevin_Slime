@@ -740,6 +740,7 @@
             event.currentTarget.classList.add('active');
         }
 
+       
         function showContact(type) {
             const messages = {
                 email: 'Email: kevin.slime@example.com',
@@ -748,12 +749,10 @@
                 linkedin: 'LinkedIn: linkedin.com/in/kevinslime'
                 
             };
-            if(type==='linkedin'){ 
-                    alert(messages[type]);
-                    setTimeout(() => {
-        window.location.href = "https://www.google.com";
-    }, 500);
-            
+            if(type==='linkedin'){
+                     alert(messages[type]);
+                    window.location.href = "https://www.linkedin.com";}
+           
         }
 
         function createFloatingElements() {
